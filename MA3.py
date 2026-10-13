@@ -1,9 +1,9 @@
 """ MA3.py
 
-Student:
-Mail:
-Reviewed by:
-Date reviewed:
+Student: Yuna Chung
+Mail: yuna.chung.2336@student.uu.se
+Reviewed by: Ivar Hammarberg
+Date reviewed: 2026-10-02
 
 """
 import random
@@ -39,8 +39,8 @@ def approximate_pi(n):
 
     plt.plot(x_inside, y_inside, 'ro')
     plt.plot(x_outside, y_outside, 'bo')
+    plt.savefig(f'ex1_{n}.png')
     plt.show()
-
     print(
         (4 * len(x_inside)) 
         /
@@ -101,7 +101,7 @@ def sphere_volume_numba(n:int, d:int)->float:
 
 #Exc4: parallel code - parallelize actual computations by splitting data
 def sphere_volume_parallel(n, d, np = 10):
-    points_per_process = n // np # allocate divided works to each processor
+    points_per_process = n // np # allocate divided works to each work of process
 
     n_list = [points_per_process] * np
     d_list = [d] * np
@@ -189,7 +189,19 @@ def main():
     sphere_volume_parallel(n, d)
     stop = pc()
     print(f"Exc4: Parallel time of {d} and {n}: {stop-start}")
+
+    '''
+    On my local computer, the sequential version took about 4.46 seconds, while the parallel version took about 4.55 seconds, 
+    so parallelization did not improve the performance. 
     
+    On the Linux server, however, the sequential version took about 16.88 seconds, 
+    while the parallel version took only about 1.79 seconds. 
+    
+    Thus, the parallel version was about 9.45 times faster than the sequential version on the Linux server. 
+
+    Also, the parallel code ran about 2.55 times faster on the Linux server than on my local computer.
+    
+    '''
 
 if __name__ == '__main__':
 	main()
